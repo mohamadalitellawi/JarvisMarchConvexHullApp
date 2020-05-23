@@ -30,17 +30,17 @@ namespace JarvisMarchConvexHull
 {
     public class Point2D
     {
-        public double x { get; set; }
-        public double y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
         public Point2D(double x, double y)
         {
-            this.x = x; this.y = y;
+            this.X = x; this.Y = y;
         }
 
         public static double Distance (Point2D a , Point2D b)
         {
-            double y1 = a.y - b.y;
-            double x1 = a.x - b.x;
+            double y1 = a.Y - b.Y;
+            double x1 = a.X - b.X;
             double distance1 = Math.Sqrt(y1 * y1 + x1 * x1);
             return distance1;
         }
@@ -54,7 +54,7 @@ namespace JarvisMarchConvexHull
             Point2D start = points[0];
             for (int i = 1; i < points.Count; i++)
             {
-                if (points[i].x < start.x)
+                if (points[i].X < start.X)
                 {
                     start = points[i];
                 }
@@ -158,10 +158,10 @@ namespace JarvisMarchConvexHull
      */
         private static double CrossProduct(Point2D a, Point2D b, Point2D c)
         {
-            double y1 = a.y - b.y;
-            double y2 = a.y - c.y;
-            double x1 = a.x - b.x;
-            double x2 = a.x - c.x;
+            double y1 = a.Y - b.Y;
+            double y2 = a.Y - c.Y;
+            double x1 = a.X - b.X;
+            double x2 = a.X - c.X;
             return (y2 * x1) - (y1 * x2);
         }
     }

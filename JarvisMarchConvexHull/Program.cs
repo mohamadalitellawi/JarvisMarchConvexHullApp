@@ -39,7 +39,7 @@ namespace JarvisMarchConvexHull
 
             foreach (var item in results)
             {
-                Console.WriteLine($"Point \t( {item.x:f2} , {item.y:f2} )");
+                Console.WriteLine($"Point \t( {item.X:f2} , {item.Y:f2} )");
             }
 
             Console.ReadKey();
