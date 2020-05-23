@@ -1,34 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-
 namespace JarvisMarchConvexHull
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<JarvisMarchConvexHullLib.Point> inputData = new List<JarvisMarchConvexHullLib.Point>
+            List<Point2D> inputData = new List<Point2D>
             {
-                new JarvisMarchConvexHullLib.Point(-7,8),
-                new JarvisMarchConvexHullLib.Point(-4,6),
-                new JarvisMarchConvexHullLib.Point(2,6),
-                new JarvisMarchConvexHullLib.Point(6,4),
-                new JarvisMarchConvexHullLib.Point(8,6),
-                new JarvisMarchConvexHullLib.Point(7,-2),
-                new JarvisMarchConvexHullLib.Point(4,-6),
-                new JarvisMarchConvexHullLib.Point(8,-7),
-                new JarvisMarchConvexHullLib.Point(0,0),
-                new JarvisMarchConvexHullLib.Point (3,-2),
-                new JarvisMarchConvexHullLib.Point(6,-10),
-                new JarvisMarchConvexHullLib.Point(0,-6),
-                new JarvisMarchConvexHullLib.Point(-9,-5),
-                new JarvisMarchConvexHullLib.Point(-8,-2),
-                new JarvisMarchConvexHullLib.Point(-8,0),
-                new JarvisMarchConvexHullLib.Point(-10,3),
-                new JarvisMarchConvexHullLib.Point(-2,2),
-                new JarvisMarchConvexHullLib.Point(-10,4)
+                new Point2D(-7,8),
+                new Point2D(-4,6),
+                new Point2D(2,6),
+                new Point2D(6,4),
+                new Point2D(8,6),
+                new Point2D(7,-2),
+                new Point2D(4,-6),
+                new Point2D(8,-7),
+                new Point2D(0,0),
+                new Point2D (3,-2),
+                new Point2D(6,-10),
+                new Point2D(0,-6),
+                new Point2D(-9,-5),
+                new Point2D(-8,-2),
+                new Point2D(-8,0),
+                new Point2D(-10,3),
+                new Point2D(-2,2),
+                new Point2D(-10,4)
             };
 
             /*
@@ -41,7 +39,7 @@ namespace JarvisMarchConvexHull
 
             foreach (var item in results)
             {
-                Console.WriteLine($"Point {item.x}, {item.y}");
+                Console.WriteLine($"Point \t( {item.x:f2} , {item.y:f2} )");
             }
 
             Console.ReadKey();

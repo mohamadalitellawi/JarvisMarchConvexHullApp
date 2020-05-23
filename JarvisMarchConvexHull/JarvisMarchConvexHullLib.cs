@@ -28,22 +28,30 @@ using System.Text;
 
 namespace JarvisMarchConvexHull
 {
-    public class JarvisMarchConvexHullLib
+    public class Point2D
     {
-        public class Point
+        public double x { get; set; }
+        public double y { get; set; }
+        public Point2D(double x, double y)
         {
-            public double x { get; set; }
-            public double y { get; set; }
-            public Point(double x, double y)
-            {
-                this.x = x; this.y = y;
-            }
+            this.x = x; this.y = y;
         }
 
-        public static List<Point> FindConvexHull(List<Point> points, double epsilonDistance = 0.0001)
+        public static double Distance (Point2D a , Point2D b)
+        {
+            double y1 = a.y - b.y;
+            double x1 = a.x - b.x;
+            double distance1 = Math.Sqrt(y1 * y1 + x1 * x1);
+            return distance1;
+        }
+    }
+    public class JarvisMarchConvexHullLib
+    {
+
+        public static List<Point2D> FindConvexHull(List<Point2D> points, double epsilonDistance = 0.0001)
         {
             // first find leftmost point to start march
-            Point start = points[0];
+            Point2D start = points[0];
             for (int i = 1; i < points.Count; i++)
             {
                 if (points[i].x < start.x)
@@ -52,18 +60,18 @@ namespace JarvisMarchConvexHull
                 }
             }
 
-            Point current = start;
+            Point2D current = start;
 
             // use set because this algorithm might try to insert duplicate point.
-            HashSet<Point> result = new HashSet<Point>();
+            HashSet<Point2D> result = new HashSet<Point2D>();
 
             result.Add(start);
 
-            List<Point> collinearPoints = new List<Point>();
+            List<Point2D> collinearPoints = new List<Point2D>();
 
             while (true)
             {
-                Point nextTarget = points[0];
+                Point2D nextTarget = points[0];
                 for (int i = 1; i < points.Count; i++)
                 {
                     if (points[i] == current)
@@ -76,7 +84,7 @@ namespace JarvisMarchConvexHull
                     {
                         nextTarget = points[i];
                         // reset collinear points because we have new nextTarget.
-                        collinearPoints = new List<Point>();
+                        collinearPoints = new List<Point2D>();
                     }
                     else if (val ==0)
                     {
@@ -122,16 +130,10 @@ namespace JarvisMarchConvexHull
      * == 0 if 'b' and 'c' are same distance from 'a'
      * or > 0 if 'c' is closer to 'a' compared to 'b'.
      */
-        private static int DistanceCompare(Point a, Point b, Point c, double epsilonDistance)
+        private static int DistanceCompare(Point2D a, Point2D b, Point2D c, double epsilonDistance)
         {
-            double y1 = a.y - b.y;
-            double y2 = a.y - c.y;
-
-            double x1 = a.x - b.x;
-            double x2 = a.x - c.x;
-
-            double distance1 = Math.Sqrt( y1 * y1 + x1 * x1);
-            double distance2 = Math.Sqrt(y2 * y2 + x2 * x2);
+            double distance1 = Point2D.Distance(a, b);
+            double distance2 = Point2D.Distance(a, c);
 
             if (Math.Abs(distance1 - distance2) < epsilonDistance)
             {
@@ -154,7 +156,7 @@ namespace JarvisMarchConvexHull
      *    result == 0 it means 'a','b' and 'c' are collinear
      *    result < 0  it means 'c' is on right of ab
      */
-        private static double CrossProduct(Point a, Point b, Point c)
+        private static double CrossProduct(Point2D a, Point2D b, Point2D c)
         {
             double y1 = a.y - b.y;
             double y2 = a.y - c.y;
